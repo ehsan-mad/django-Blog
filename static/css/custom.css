@@ -1,0 +1,126 @@
+/* Custom CSS for DJ Blog */
+
+/* Line clamp utility for text truncation */
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Prose styling for CKEditor content */
+.prose {
+    max-width: none;
+}
+
+.prose p {
+    margin-bottom: 1em;
+    line-height: 1.6;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+}
+
+.prose h1 { font-size: 2em; }
+.prose h2 { font-size: 1.5em; }
+.prose h3 { font-size: 1.25em; }
+
+.prose ul, .prose ol {
+    margin-bottom: 1em;
+    padding-left: 1.5em;
+}
+
+.prose li {
+    margin-bottom: 0.25em;
+}
+
+.prose blockquote {
+    border-left: 4px solid #e5e7eb;
+    padding-left: 1em;
+    margin: 1em 0;
+    font-style: italic;
+    color: #6b7280;
+}
+
+.prose code {
+    background-color: #f3f4f6;
+    padding: 0.125em 0.25em;
+    border-radius: 0.25em;
+    font-size: 0.875em;
+}
+
+.prose pre {
+    background-color: #f3f4f6;
+    padding: 1em;
+    border-radius: 0.5em;
+    overflow-x: auto;
+    margin: 1em 0;
+}
+
+.prose a {
+    color: #3b82f6;
+    text-decoration: underline;
+}
+
+.prose a:hover {
+    color: #1d4ed8;
+}
+
+/* Custom animations */
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Alert styles */
+.alert {
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Form focus styles */
+.form-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+}
+
+/* Logout button styling */
+.logout-btn {
+    background: none;
+    border: 1px solid #d1d5db;
+    color: #6b7280;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.logout-btn:hover {
+    color: #374151;
+    border-color: #9ca3af;
+}

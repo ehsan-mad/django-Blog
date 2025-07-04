@@ -1,0 +1,80 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Home - DJ Blog{% endblock %}
+
+{% block content %}
+<div class="space-y-8">
+    <!-- Page Header -->
+    <div class="text-center">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">Welcome to DJ Blog</h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            Discover amazing stories, insights, and ideas from our community of writers.
+        </p>
+    </div>
+
+    <!-- Search and Filter -->
+    {% include 'components/search_filter.html' %}
+
+    <!-- Posts Grid -->
+    {% if page.object_list %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for post in page.object_list %}
+                {% include 'components/post_card.html' %}
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-12">
+            {% include 'components/pagination.html' %}
+        </div>
+    {% else %}
+        <!-- Empty State -->
+        <div class="text-center py-16">
+            <div class="max-w-md mx-auto">
+                <i class="fas fa-search text-6xl text-gray-300 mb-4"></i>
+                <h3 class="text-xl font-medium text-gray-900 mb-2">No posts found</h3>
+                <p class="text-gray-600 mb-6">
+                    {% if search_query or category_query or tag_query %}
+                        Try adjusting your search criteria or 
+                        <a href="{% url 'post_list' %}" class="text-primary-600 hover:text-primary-800">clear all filters</a>.
+                    {% else %}
+                        Be the first to create a post and share your thoughts with the community.
+                    {% endif %}
+                </p>
+                {% if not search_query and not category_query and not tag_query %}
+                    <a href="{% url 'post_create' %}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-primary-600 hover:bg-primary-700 transition duration-200">
+                        <i class="fas fa-plus mr-2"></i>
+                        Create Your First Post
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+
+    <!-- Stats Section -->
+    {% if page.object_list %}
+        <div class="bg-white rounded-xl shadow-md p-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+                <div>
+                    <div class="text-3xl font-bold text-primary-600">{{ posts.count }}</div>
+                    <div class="text-sm text-gray-600">Total Posts</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-green-600">{{ categories.count }}</div>
+                    <div class="text-sm text-gray-600">Categories</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-purple-600">{{ tags.count }}</div>
+                    <div class="text-sm text-gray-600">Tags</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-orange-600">
+                        {% for post in posts %}{{ post.view_count|add:0 }}{% endfor %}
+                    </div>
+                    <div class="text-sm text-gray-600">Total Views</div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
